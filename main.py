@@ -57,15 +57,18 @@ def basic(user_input):
             holiday_date = value
             break
     vacation = vacations_by_month[month]
-    return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
+    return {"msg":"Here are the best vacation destinations for the next long weekend on "+holiday_date,"vacations":vacation} 
+    # return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
 
 @app.route('/',methods = ['POST'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
     data = request.data
-    print(data)
-    output_speech = basic(data)
-    return jsonify(output_speech)
+    if("hello" or "hi" or "hi skye" in request.data):
+      return "Hi Yash! How can I help you?"
+    if ("show me vacation destinations" or "vacation" or "destinations" or "vacation destinations" in request.data):
+      output_speech = basic(data)
+      return jsonify(output_speech)
 
 
 if __name__ == '__main__':
