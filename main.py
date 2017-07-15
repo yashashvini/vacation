@@ -63,12 +63,12 @@ def basic(user_input):
 @app.route('/',methods = ['POST'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
-    data = request.data
+    data = request.data.decode('utf-8')
     print(data)
-    if(("hello" in request.data) or ("hi" in request.data) or ("hi skye" in request.data)):
+    if(('hello' in data) or ("hi" in data) or ("hi skye" in data)):
       return "Hi Yash! How can I help you?"
-    if (("show me vacation destinations" in request.data) or ("vacation" in request.data) or ("destinations" in request.data) 
-      or ("vacation destinations" in request.data)):
+    if (("show me vacation destinations" in data) or ("vacation" in data) or ("destinations" in data) 
+      or ("vacation destinations" in data)):
       output_speech = basic(data)
       return jsonify(output_speech)
 
