@@ -64,9 +64,10 @@ def basic(user_input):
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
     data = request.data
-    if("hello" or "hi" or "hi skye" in request.data):
+
+    if(("hello" or "hi" or "hi skye") in request.data):
       return "Hi Yash! How can I help you?"
-    if ("show me vacation destinations" or "vacation" or "destinations" or "vacation destinations" in request.data):
+    if (("show me vacation destinations" or "vacation" or "destinations" or "vacation destinations") in request.data):
       output_speech = basic(data)
       return jsonify(output_speech)
 
