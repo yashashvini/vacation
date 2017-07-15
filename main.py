@@ -5,6 +5,7 @@ import os.path
 import sys
 import json
 import datetime
+from flask.ext.cors import CORS, cross_origin
 cors = CORS(app, resources={r"/": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 # try:
