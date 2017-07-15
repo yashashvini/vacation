@@ -46,7 +46,6 @@ def basic():
     else:
         month = current_date[5:7]
     month = month_list[int(month) - 1]
-    print month
     holiday_occasion = "None"
     holiday_date = "None"
     for key, value in long_weekends.iteritems():
