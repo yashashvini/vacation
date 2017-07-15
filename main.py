@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask.json import jsonify
 app = Flask(__name__)
 import os.path
 import sys
@@ -56,7 +57,7 @@ def basic(user_input):
             holiday_date = value
             break
     vacation = vacations_by_month[month]
-    return [holiday_occasion,holiday_date,vacation]
+    return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
 
 @app.route('/',methods = ['POST'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
@@ -64,10 +65,10 @@ def index():
     data = request.data
     print(data)
     output_speech = basic(data)
-    return output_speech
+    return jsonify(output_speech)
 
 
 if __name__ == '__main__':
-    app.debug = True
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+  app.debug = True
+  port = int(os.environ.get("PORT", 5000))
+  app.run(host='0.0.0.0', port=port)
