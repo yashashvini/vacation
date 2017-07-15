@@ -16,7 +16,7 @@ import datetime
 # client_access_token = '8bd3b6024a8e461f8e4e63c181882295'
 
 
-@app.route("/")
+#@app.route("/")
 def basic():
     long_weekends = {"Independence Day": "TUESDAY, JULY,2017",
     "LABOR DAY":"MONDAY, SEPTEMBER 4, 2017 ",
@@ -62,4 +62,4 @@ def basic():
 
 if __name__ == '__main__':
     basic()
-    app.run()
+    #app.run()
