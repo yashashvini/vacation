@@ -5,6 +5,8 @@ import os.path
 import sys
 import json
 import datetime
+cors = CORS(app, resources={r"/": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 # try:
 #     import apiai
 # except ImportError:
@@ -57,6 +59,7 @@ def basic(data):
     return [holiday_occasion,holiday_date,vacation]
 
 @app.route('/',methods = ['POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
     data = request.data
     print(data)
