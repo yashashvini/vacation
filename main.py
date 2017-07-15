@@ -17,7 +17,7 @@ import datetime
 
 
 #@app.route("/")
-def basic():
+def basic(data):
     long_weekends = {"Independence Day": "TUESDAY, JULY,2017",
     "LABOR DAY":"MONDAY, SEPTEMBER 4, 2017 ",
     "COLUMBUS DAY":"MONDAY, OCTOBER 9, 2017",
@@ -56,9 +56,15 @@ def basic():
     vacation = vacations_by_month[month]
     return [holiday_occasion,holiday_date,vacation]
 
-
+@app.route('/',methods = ['POST'])
+def index():
+    data = request.data
+    print(data)
+    output_speech = basic(data)
+    return output_speech
 
 
 if __name__ == '__main__':
-    basic()
-    #app.run()
+    app.debug = True
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
