@@ -20,7 +20,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route("/")
-def basic(data):
+def basic(data1):
     long_weekends = {"Independence Day": "TUESDAY, JULY,2017",
     "LABOR DAY":"MONDAY, SEPTEMBER 4, 2017 ",
     "COLUMBUS DAY":"MONDAY, OCTOBER 9, 2017",
