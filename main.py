@@ -64,7 +64,7 @@ def basic(user_input):
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
     data = request.data
-    print data
+    print(data)
     if(("hello" in request.data) or ("hi" in request.data) or ("hi skye" in request.data)):
       return "Hi Yash! How can I help you?"
     if (("show me vacation destinations" in request.data) or ("vacation" in request.data) or ("destinations" in request.data) 
