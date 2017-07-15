@@ -48,7 +48,7 @@ def basic():
     month = month_list[int(month) - 1]
     holiday_occasion = "None"
     holiday_date = "None"
-    for key, value in long_weekends.iteritems():
+    for key, value in long_weekends.items():
         if(month.upper() in value ):
             holiday_occasion = key
             holiday_date = value
