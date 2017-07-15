@@ -1,5 +1,5 @@
-__author__ = 'hemalatha_ganireddy'
 from flask import Flask
+from flask import request
 app = Flask(__name__)
 import os.path
 import sys
