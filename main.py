@@ -20,7 +20,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # client_access_token = '8bd3b6024a8e461f8e4e63c181882295'
 
 
-def basic():
+def basic(user_input):
     long_weekends = {"Independence Day": ["TUESDAY, JULY 4, 2017",2017,7,4],
     "LABOR DAY":["MONDAY, SEPTEMBER 4, 2017 ",2017,8,4],
     "COLUMBUS DAY":["MONDAY, OCTOBER 9, 2017",2017,10,9],
@@ -64,22 +64,20 @@ def basic():
     return {"msg":"Here are the best vacation destinations for the next long weekend on "+holiday_date,"vacations":vacation} 
     # return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
 
-#@app.route('/',methods = ['POST'])
-#@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@app.route('/',methods = ['POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
-    # data = request.data.decode('utf-8')
-    # print(data)
-    # if(('hello' in data) or ("hi" in data) or ("hi skye" in data)):
-    #   return "Hi Yash! How can I help you?"
-    # if (("show me vacation destinations" in data) or ("vacation" in data) or ("destinations" in data) 
-    #   or ("vacation destinations" in data)):
-    #   output_speech = basic(data)
-    #   return jsonify(output_speech)
-    basic()
+    data = request.data.decode('utf-8')
+    print(data)
+    if(('hello' in data) or ("hi" in data) or ("hi skye" in data)):
+      return "Hi Yash! How can I help you?"
+    if (("show me vacation destinations" in data) or ("vacation" in data) or ("destinations" in data) 
+      or ("vacation destinations" in data)):
+      output_speech = basic(data)
+      return jsonify(output_speech)
 
 
 if __name__ == '__main__':
-  index()
-  # app.debug = True
-  # port = int(os.environ.get("PORT", 5000))
-  # app.run(host='0.0.0.0', port=port)
+  app.debug = True
+  port = int(os.environ.get("PORT", 5000))
+  app.run(host='0.0.0.0', port=port)
