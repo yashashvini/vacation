@@ -57,6 +57,10 @@ def basic(user_input):
             holiday_date = value
             break
     vacation = vacations_by_month[month]
+    t = ""
+    for i in vacation:
+      t += i
+      t += ' '
     return {"msg":"Here are the best vacation destinations for the next long weekend on "+holiday_date,"vacations":vacation} 
     # return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
 
