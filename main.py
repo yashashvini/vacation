@@ -61,7 +61,7 @@ def basic(user_input):
     for i in vacation:
       t += i
       t += ' '
-    return {"msg":"Here are the best vacation destinations for the next long weekend on "+holiday_date,"vacations":vacation} 
+    return {"msg":"Here are the best vacation destinations for the next long weekend on "+holiday_date,"vacations":t} 
     # return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
 
 @app.route('/',methods = ['POST'])
