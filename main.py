@@ -20,13 +20,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # client_access_token = '8bd3b6024a8e461f8e4e63c181882295'
 
 
-def basic(user_input):
-    long_weekends = {"Independence Day": "TUESDAY, JULY,2017",
-    "LABOR DAY":"MONDAY, SEPTEMBER 4, 2017 ",
-    "COLUMBUS DAY":"MONDAY, OCTOBER 9, 2017",
-    "VETERANS DAY":"FRIDAY, NOVEMBER 10, 2017",
-    "THANKSGIVING DAY":"THURSDAY, NOVEMBER 23, 2017",
-    "MONDAY, DECEMBER 25, 2017":"CHRISTMAS DAY"}
+def basic():
+    long_weekends = {"Independence Day": ["TUESDAY, JULY 4, 2017",2017,7,4],
+    "LABOR DAY":["MONDAY, SEPTEMBER 4, 2017 ",2017,8,4],
+    "COLUMBUS DAY":["MONDAY, OCTOBER 9, 2017",2017,10,9],
+    "VETERANS DAY":["FRIDAY, NOVEMBER 10, 2017",2017,11,10],
+    "THANKSGIVING DAY":["THURSDAY, NOVEMBER 23, 2017",2017,11,23],
+    "CHRISTMAS DAY" : ["MONDAY, DECEMBER 25, 2017",2017,12,25]}
     vacations_by_month = {"January": ["Caribbean","Australia","Shetland Islands","Scotland","Northern lights in Norway",
                                      "Mexico (Puerto Escondido for something lively, Mazunte, San Agustinillo and Zipolite for something a little quieter)"," Brazil",
                                      " Ethiopia", "Scotland", "Norway", "France", "Switzerland", "Austria", "The West Indies and the Caribbean", "the Dominican Republic", "South Africa"],
@@ -43,6 +43,7 @@ def basic(user_input):
                           "December" : ["Mexico", "Belize", "Skiing Destinations", "the Caribbean", "Cambodia", "Australia", "Iceland"]
                           }
     current_date = str(datetime.datetime.now())
+    print current_date[8:]
     month_list = ["January","February","March","April","May","June","July","September","October","November","December"]
     if(current_date[5:6] == '0'):
         month = current_date[6:7]
@@ -52,9 +53,9 @@ def basic(user_input):
     holiday_occasion = "None"
     holiday_date = "None"
     for key, value in long_weekends.items():
-        if(month.upper() in value ):
+          if(datetime.datetime.now() < datetime.datetime(value[1],value[2],value[3])):
             holiday_occasion = key
-            holiday_date = value
+            holiday_date = value[0]
             break
     vacation = vacations_by_month[month]
     # t = ""
@@ -64,20 +65,22 @@ def basic(user_input):
     return {"msg":"Here are the best vacation destinations for the next long weekend on "+holiday_date,"vacations":vacation} 
     # return {"occasion":holiday_occasion,"date":holiday_date,"vacation":vacation}
 
-@app.route('/',methods = ['POST'])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+#@app.route('/',methods = ['POST'])
+#@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
-    data = request.data.decode('utf-8')
-    print(data)
-    if(('hello' in data) or ("hi" in data) or ("hi skye" in data)):
-      return "Hi Yash! How can I help you?"
-    if (("show me vacation destinations" in data) or ("vacation" in data) or ("destinations" in data) 
-      or ("vacation destinations" in data)):
-      output_speech = basic(data)
-      return jsonify(output_speech)
+    # data = request.data.decode('utf-8')
+    # print(data)
+    # if(('hello' in data) or ("hi" in data) or ("hi skye" in data)):
+    #   return "Hi Yash! How can I help you?"
+    # if (("show me vacation destinations" in data) or ("vacation" in data) or ("destinations" in data) 
+    #   or ("vacation destinations" in data)):
+    #   output_speech = basic(data)
+    #   return jsonify(output_speech)
+    basic()
 
 
 if __name__ == '__main__':
-  app.debug = True
-  port = int(os.environ.get("PORT", 5000))
-  app.run(host='0.0.0.0', port=port)
+  index()
+  # app.debug = True
+  # port = int(os.environ.get("PORT", 5000))
+  # app.run(host='0.0.0.0', port=port)
