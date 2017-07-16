@@ -43,7 +43,6 @@ def basic():
                           "December" : ["Mexico", "Belize", "Skiing Destinations", "the Caribbean", "Cambodia", "Australia", "Iceland"]
                           }
     current_date = str(datetime.datetime.now())
-    print current_date[8:]
     month_list = ["January","February","March","April","May","June","July","September","October","November","December"]
     if(current_date[5:6] == '0'):
         month = current_date[6:7]
