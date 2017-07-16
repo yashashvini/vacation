@@ -44,17 +44,14 @@ def basic(user_input):
                           }
     current_date = str(datetime.datetime.now())
     month_list = ["January","February","March","April","May","June","July","September","October","November","December"]
-    if(current_date[5:6] == '0'):
-        month = current_date[6:7]
-    else:
-        month = current_date[5:7]
-    month = month_list[int(month) - 1]
     holiday_occasion = "None"
     holiday_date = "None"
     for key, value in long_weekends.items():
           if(datetime.datetime.now() < datetime.datetime(value[1],value[2],value[3])):
             holiday_occasion = key
             holiday_date = value[0]
+            month = value[2]
+            month = month_list[int(month) - 1]
             break
     vacation = vacations_by_month[month]
     # t = ""
